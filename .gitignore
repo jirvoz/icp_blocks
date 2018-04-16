@@ -1,6 +1,11 @@
 *.user
 *.autosave
 build*
-
+src/Makefile
+*.o
+moc_*
+ui_*
+*.qmake*
+block-editor
 doc*
-Makefile
+*.tar.gz

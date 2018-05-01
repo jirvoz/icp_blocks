@@ -22,6 +22,7 @@ public:
     void clearScene(); // for "New" button to remove all entities
     void loadFromFile(QString filename);
     void saveToFile(QString filename);
+    void removeSelected();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;

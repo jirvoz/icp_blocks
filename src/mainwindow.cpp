@@ -1,3 +1,5 @@
+#include <QFileDialog>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -9,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene = new BlockScene();
     ui->graphicsView->setScene(scene);
+    statusBar()->showMessage("Hello there, general Kenobi.");
 }
 
 MainWindow::~MainWindow()
@@ -18,17 +21,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
-    //scene->clearScene();
+    scene->clearScene();
 }
 
 void MainWindow::on_actionOpen_triggered()
 {
-    //scene->loadFromFile("");
+    QString filename = QFileDialog::getOpenFileName(this, "Open schema");
+    if (!filename.isEmpty())
+        scene->loadFromFile(filename);
 }
 
 void MainWindow::on_actionSave_triggered()
 {
-    //scene->saveToFile("");
+    QString filename = QFileDialog::getSaveFileName(this, "Save schema");
+    if (!filename.isEmpty())
+        scene->saveToFile(filename);
 }
 
 void MainWindow::on_actionExit_triggered()

@@ -29,18 +29,33 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
-void clearScene()
+void BlockScene::clearScene()
 {
+    foreach (auto pipe, pipes) {
+        removeItem(pipe);
+    }
+    pipes.clear();
 
+    foreach (auto block, blocks) {
+        removeItem(block);
+    }
+    blocks.clear();
 }
 
-void loadFromFile(QString filename)
+void BlockScene::loadFromFile(QString filename)
 {
     clearScene();
 
 }
 
-void saveToFile(QString filename)
+void BlockScene::saveToFile(QString filename)
 {
 
+}
+
+void BlockScene::removeSelected()
+{
+    //foreach (QGraphicsItem item, selectedItems()) {
+
+    //}
 }

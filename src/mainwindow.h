@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "blockscene.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +19,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    BlockScene *scene;
 };
 
 #endif // MAINWINDOW_H

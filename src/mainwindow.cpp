@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    scene = new BlockScene();
+    ui->graphicsView->setScene(scene);
 }
 
 MainWindow::~MainWindow()

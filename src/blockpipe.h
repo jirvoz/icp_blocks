@@ -14,6 +14,8 @@ class BlockPipe : public QGraphicsLineItem
 public:
     BlockPipe(BlockScene *parent, BlockSlot *startSlot, BlockSlot *endSlot);
 
+    void updatePosition();
+
 private:
     BlockScene *parent_scene;
     BlockSlot *startSlot;

@@ -7,9 +7,15 @@ BlockPipe::BlockPipe(BlockScene *parent, BlockSlot *startSlot, BlockSlot *endSlo
 
     this->startSlot = startSlot;
     this->endSlot = endSlot;
+    startSlot->setPipe(this);
+    endSlot->setPipe(this);
 
-    QLineF *lin = new QLineF(startSlot->scenePos(), endSlot->scenePos());
-    setLine(100, 100, 500, 400);
     setLine(QLineF(startSlot->scenePos(), endSlot->scenePos()));
-    qCritical("Pokus.");
+    setPen(QPen(Qt::black, 2));
+    setFlag(QGraphicsItem::ItemIsSelectable, true);
+}
+
+void BlockPipe::updatePosition()
+{
+    setLine(QLineF(startSlot->scenePos(), endSlot->scenePos()));
 }

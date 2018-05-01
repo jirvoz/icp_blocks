@@ -28,13 +28,15 @@ SOURCES += \
         mainwindow.cpp \
     blockitem.cpp \
     blockscene.cpp \
-    blockslot.cpp
+    blockslot.cpp \
+    blockpipe.cpp
 
 HEADERS += \
         mainwindow.h \
     blockitem.h \
     blockscene.h \
-    blockslot.h
+    blockslot.h \
+    blockpipe.h
 
 FORMS += \
         mainwindow.ui

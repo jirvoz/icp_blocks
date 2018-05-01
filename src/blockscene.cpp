@@ -6,6 +6,7 @@ BlockScene::BlockScene()
 {
     blocks.append(new BlockItem(this, 100, 120));
     blocks.append(new BlockItem(this, 210, 150));
+    pipes.append(new BlockPipe(this, blocks[0]->out_slots[0], blocks[1]->in_slots[0]));
 }
 
 void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)

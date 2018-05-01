@@ -7,8 +7,10 @@
 #include <QList>
 
 #include "blockitem.h"
+#include "blockpipe.h"
 
 class BlockItem;
+class BlockPipe;
 
 class BlockScene : public QGraphicsScene
 {
@@ -28,6 +30,7 @@ protected:
 
 private:
     QList<BlockItem *> blocks;
+    QList<BlockPipe *> pipes;
 };
 
 #endif // BLOCKSCENE_H

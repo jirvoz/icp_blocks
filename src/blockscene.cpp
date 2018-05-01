@@ -15,3 +15,19 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
+
+void clearScene()
+{
+
+}
+
+void loadFromFile(QString filename)
+{
+    clearScene();
+
+}
+
+void saveToFile(QString filename)
+{
+
+}

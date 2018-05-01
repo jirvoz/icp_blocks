@@ -1,5 +1,4 @@
 #include "blockitem.h"
-#include <QDebug>
 
 BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
 {
@@ -16,11 +15,8 @@ BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
     out_slots.append(new BlockSlot(this, x + 90, y + 45));
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
-        parent_scene->addItem(sl);
     }
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
-        parent_scene->addItem(sl);
     }
-    qDebug() << "pokus";
 }

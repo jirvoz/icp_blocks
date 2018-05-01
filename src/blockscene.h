@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
+#include <QString>
 #include <QList>
 
 #include "blockitem.h"
@@ -15,6 +16,10 @@ class BlockScene : public QGraphicsScene
 
 public:
     BlockScene();
+
+    void clearScene(); // for "New" button to remove all entities
+    void loadFromFile(QString filename);
+    void saveToFile(QString filename);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;

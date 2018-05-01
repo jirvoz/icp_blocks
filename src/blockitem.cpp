@@ -1,4 +1,9 @@
+#include "blockslotin.h"
+#include "blockslotout.h"
+
 #include "blockitem.h"
+
+#include "datacontainer.h"
 
 BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
 {
@@ -11,9 +16,9 @@ BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
 
     // Slots
-    in_slots.append(new BlockSlot(this, 0, 10));
-    in_slots.append(new BlockSlot(this, 0, 80));
-    out_slots.append(new BlockSlot(this, 90, 45));
+    in_slots.append(new BlockSlotIn(this, 0, 10, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, 0, 80, DataType::NUMBER));
+    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::VEC2));
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }

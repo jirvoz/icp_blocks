@@ -3,10 +3,17 @@
 
 #include <QGraphicsPixmapItem>
 
+#include "blockitem.h"
+
+class BlockItem;
+
 class BlockSlot : public QGraphicsRectItem
 {
 public:
-    BlockSlot();
+    BlockSlot(BlockItem *parent, qreal x, qreal y);
+
+private:
+    BlockItem *parent_block;
 };
 
 #endif // BLOCKSLOT_H

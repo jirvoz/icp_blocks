@@ -1,17 +1,17 @@
+#include <QGraphicsSceneMouseEvent>
+
 #include "blockscene.h"
 
 BlockScene::BlockScene()
 {
-    QGraphicsRectItem *parent_r = new QGraphicsRectItem(0,0,100,100);
-    QGraphicsRectItem *child_r = new QGraphicsRectItem(10,10,10,10);
-    child_r->setParentItem(parent_r);
-    addItem(parent_r);
-    addItem(child_r);
+    blocks.append(new BlockItem(this, 100, 120));
+    blocks.append(new BlockItem(this, 210, 150));
+}
 
-    parent_r->setFlag(QGraphicsItem::ItemIsMovable, true);
-    parent_r->setFlag(QGraphicsItem::ItemIsSelectable, true);
-    parent_r->setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
-    child_r->setFlag(QGraphicsItem::ItemIsMovable, true);
-    child_r->setFlag(QGraphicsItem::ItemIsSelectable, true);
-    child_r->setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
+void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    if (mouseEvent->button() != Qt::LeftButton)
+        return;
+
+    QGraphicsScene::mousePressEvent(mouseEvent);
 }

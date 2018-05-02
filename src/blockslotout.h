@@ -6,9 +6,10 @@
 
 class BlockSlotOut : public BlockSlot
 {
-	DataContainer data;
 public:
     BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type);
+private:
+	DataContainer data;
 };
 
 #endif // BLOCKSLOTOUT_H

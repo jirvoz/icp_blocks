@@ -6,10 +6,11 @@
 
 class BlockSlotIn : public BlockSlot
 {
-	DataType type;
-	DataContainer *data;
 public:
     BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type);
+private:
+    DataType type;
+    DataContainer *data;
 };
 
 #endif // BLOCKSLOTIN_H

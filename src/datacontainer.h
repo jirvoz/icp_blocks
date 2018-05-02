@@ -12,10 +12,11 @@ enum DataType {
 
 class DataContainer
 {
-    DataType type;
-    QMap<QString, double> dict;
 public:
     DataContainer(DataType type);
+private:
+    DataType type;
+    QMap<QString, double> dict;
 };
 
 #endif // DATACONTAINER_H

@@ -9,8 +9,8 @@ class BlockSlotIn : public BlockSlot
 public:
     BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type);
 private:
-    DataType type;
-    DataContainer *data;
+    DataType valueType;
+    DataContainer *valueData;
 };
 
 #endif // BLOCKSLOTIN_H

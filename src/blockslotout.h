@@ -9,7 +9,7 @@ class BlockSlotOut : public BlockSlot
 public:
     BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type);
 private:
-	DataContainer data;
+	DataContainer valueData;
 };
 
 #endif // BLOCKSLOTOUT_H

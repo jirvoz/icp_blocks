@@ -3,6 +3,7 @@
 
 #include "blockslot.h"
 
+/*
 class BlockSlotIn : public BlockSlot
 {
 public:
@@ -14,5 +15,6 @@ private:
     DataType valueType;
     DataContainer *valueData;
 };
+*/
 
 #endif // BLOCKSLOTIN_H

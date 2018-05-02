@@ -3,6 +3,7 @@
 
 #include "blockslot.h"
 
+/*
 class BlockSlotOut : public BlockSlot
 {
 public:
@@ -11,7 +12,8 @@ public:
     DataType getType() override;
     QMap<QString, double> *getData() override;
 private:
-	DataContainer valueData;
+    DataContainer valueData;
 };
+*/
 
 #endif // BLOCKSLOTOUT_H

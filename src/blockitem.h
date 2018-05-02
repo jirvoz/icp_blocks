@@ -14,6 +14,9 @@ class BlockItem : public QGraphicsRectItem
 {
 public:
     BlockItem(BlockScene *parent, qreal x, qreal y);
+
+    virtual void Compute() { return; }
+
     QList<BlockSlot *> in_slots;
     QList<BlockSlot *> out_slots;
 

@@ -20,6 +20,7 @@ public:
     virtual bool dataValid() = 0;
     virtual QMap<QString, double> *getData() = 0;
     virtual DataType getType() = 0;
+    QString getValueString();
 
 private:
     BlockItem *parent_block;

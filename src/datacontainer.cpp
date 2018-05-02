@@ -19,3 +19,18 @@ DataContainer::DataContainer(DataType type) : type(type)
         break;
     }
 }
+
+bool DataContainer::typeMatch(DataType t)
+{
+	return type == t;
+}
+
+QMap<QString, double> *DataContainer::getData()
+{
+	return &dict;
+}
+
+DataType DataContainer::getType()
+{
+	return type;
+}

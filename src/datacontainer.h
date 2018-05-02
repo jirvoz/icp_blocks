@@ -1,8 +1,8 @@
 #ifndef DATACONTAINER_H
 #define DATACONTAINER_H
 
-#include <string>
-#include <map>
+#include <QMap>
+#include <QString>
 
 enum DataType {
     NUMBER,
@@ -13,7 +13,7 @@ enum DataType {
 class DataContainer
 {
     DataType type;
-    std::map<std::string, double> dict;
+    QMap<QString, double> dict;
 public:
     DataContainer(DataType type);
 };

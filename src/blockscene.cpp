@@ -35,7 +35,7 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if (overItem) {
         BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem);
         if (bs)
-            updateLabel("update!!!");
+            updateLabel(bs->getValueString());
     }
 
     /*if (mouseEvent->button() != Qt::LeftButton) {

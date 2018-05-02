@@ -18,5 +18,5 @@ DataType BlockSlotIn::getType()
 
 QMap<QString, double> *BlockSlotIn::getData()
 {
-    return valueData->getData();
+    return valueData ? valueData->getData() : nullptr;
 }

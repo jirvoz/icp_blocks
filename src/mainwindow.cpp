@@ -1,4 +1,5 @@
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -57,4 +58,10 @@ void MainWindow::on_pushButton_toggled(bool checked)
 void MainWindow::on_actionAdd_triggered()
 {
     scene->addBlock();
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, "About Block editor",
+                       "Authors: Václav Doležal, Jiří Vozár");
 }

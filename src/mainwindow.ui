@@ -22,7 +22,11 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QGraphicsView" name="graphicsView"/>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="Line" name="line">
@@ -103,7 +107,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPokus"/>
+   <addaction name="actionPipe"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew">
@@ -126,12 +130,15 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionPokus">
+  <action name="actionPipe">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Pokus</string>
+    <string>Draw pipe</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw pipe</string>
    </property>
   </action>
   <action name="actionRemove">

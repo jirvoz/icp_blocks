@@ -9,14 +9,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    scene = new BlockScene();
+    scene = new BlockScene(ui->graphicsView);
     ui->graphicsView->setScene(scene);
+    connect(scene, SIGNAL(updateLabel(QString)), this, SLOT(updateLabel(QString)));
     statusBar()->showMessage("Hello there, general Kenobi.");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::updateLabel(QString text)
+{
+    ui->label->setText(text);
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -41,4 +47,9 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     QApplication::quit();
+}
+
+void MainWindow::on_actionPipe_toggled(bool arg1)
+{
+    scene->setDrawPipe(arg1);
 }

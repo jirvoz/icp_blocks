@@ -8,9 +8,9 @@ class BlockSlotIn : public BlockSlot
 {
 public:
     BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type);
-    bool dataValid() override;
-    DataType getType() override;
-    QMap<QString, double> *getData() override;
+    virtual bool dataValid() override;
+    virtual DataType getType() override;
+    virtual QMap<QString, double> *getData() override;
 private:
     DataType valueType;
     DataContainer *valueData;

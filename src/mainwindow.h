@@ -23,8 +23,8 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_actionExit_triggered();
-
-    void on_actionPipe_toggled(bool arg1);
+    void on_pushButton_toggled(bool checked);
+    void on_actionAdd_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -19,3 +19,8 @@ void BlockPipe::updatePosition()
 {
     setLine(QLineF(startSlot->scenePos(), endSlot->scenePos()));
 }
+
+BlockPipe::~BlockPipe()
+{
+
+}

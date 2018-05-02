@@ -49,7 +49,12 @@ void MainWindow::on_actionExit_triggered()
     QApplication::quit();
 }
 
-void MainWindow::on_actionPipe_toggled(bool arg1)
+void MainWindow::on_pushButton_toggled(bool checked)
 {
-    scene->setDrawPipe(arg1);
+    scene->setDrawPipe(checked);
+}
+
+void MainWindow::on_actionAdd_triggered()
+{
+    scene->addBlock();
 }

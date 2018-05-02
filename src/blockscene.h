@@ -25,6 +25,7 @@ public:
     void saveToFile(QString filename);
     void removeSelected();
     void setDrawPipe(bool value) { drawPipe = value; }
+    void addBlock();
 
 signals:
     void updateLabel(QString text);

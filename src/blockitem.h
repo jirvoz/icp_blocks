@@ -4,21 +4,26 @@
 #include <QGraphicsPixmapItem>
 #include <QList>
 
-#include "blockslot.h"
 #include "blockscene.h"
+#include "blockslot.h"
+#include "blockslotin.h"
+#include "blockslotout.h"
 
 class BlockScene;
 class BlockSlot;
+class BlockSlotIn;
+class BlockSlotOut;
 
 class BlockItem : public QGraphicsRectItem
 {
 public:
     BlockItem(BlockScene *parent, qreal x, qreal y);
+    ~BlockItem();
 
-    virtual void Compute() { return; }
+    virtual void compute() { return; }
 
-    QList<BlockSlot *> in_slots;
-    QList<BlockSlot *> out_slots;
+    QList<BlockSlotIn *> in_slots;
+    QList<BlockSlotOut *> out_slots;
 
 private:
     BlockScene *parent_scene;

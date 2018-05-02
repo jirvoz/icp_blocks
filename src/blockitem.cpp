@@ -1,6 +1,3 @@
-#include "blockslotin.h"
-#include "blockslotout.h"
-
 #include "blockitem.h"
 
 #include "datacontainer.h"
@@ -25,4 +22,9 @@ BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+}
+
+BlockItem::~BlockItem()
+{
+
 }

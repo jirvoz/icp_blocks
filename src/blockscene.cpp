@@ -20,9 +20,15 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
     // Start drawing of pipe
     if (drawPipe) {
-        line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
-                    mouseEvent->scenePos()));
-        addItem(line);
+        QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
+        if (overItem) {
+            BlockSlotOut *bs = dynamic_cast<BlockSlotOut *>(overItem);
+            if (bs) {
+                line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
+                        mouseEvent->scenePos()));
+                addItem(line);
+            }
+        }
     }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
@@ -35,7 +41,7 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if (overItem) {
         BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem);
         if (bs)
-            updateLabel("update!!!");
+            emit updateLabel("update!!!");
     }
 
     /*if (mouseEvent->button() != Qt::LeftButton) {
@@ -101,4 +107,10 @@ void BlockScene::removeSelected()
     //foreach (QGraphicsItem item, selectedItems()) {
 
     //}
+}
+
+void BlockScene::addBlock()
+{
+    blocks.append(new BlockItem(this, std::rand() % 101 - 50,
+                                std::rand() % 101 - 50));
 }

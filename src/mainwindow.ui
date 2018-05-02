@@ -39,13 +39,35 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="pushButton">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Draw pipe</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="text">
          <string>Details:</string>
         </property>
@@ -84,6 +106,7 @@
     <property name="title">
      <string>Item</string>
     </property>
+    <addaction name="actionAdd"/>
     <addaction name="actionRemove"/>
    </widget>
    <widget class="QMenu" name="menuRun">
@@ -96,18 +119,6 @@
    <addaction name="menuFile"/>
    <addaction name="menuItem"/>
    <addaction name="menuRun"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <property name="windowTitle">
-    <string/>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionPipe"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew">
@@ -130,17 +141,6 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionPipe">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Draw pipe</string>
-   </property>
-   <property name="toolTip">
-    <string>Draw pipe</string>
-   </property>
-  </action>
   <action name="actionRemove">
    <property name="text">
     <string>Remove</string>
@@ -154,6 +154,11 @@
   <action name="actionStep">
    <property name="text">
     <string>Step</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add</string>
    </property>
   </action>
  </widget>

@@ -7,6 +7,7 @@ BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
     parent_scene->addItem(this);
     setRect(0, 0, 100, 100);
     setPos(x, y);
+    setBrush(Qt::white);
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
@@ -21,6 +22,14 @@ BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+}
+
+void BlockItem::setHighlight(bool value)
+{
+    if (value)
+        setBrush(Qt::yellow);
+    else
+        setBrush(Qt::white);
 }
 
 BlockItem::~BlockItem()

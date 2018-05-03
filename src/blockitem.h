@@ -18,6 +18,7 @@ public:
     BlockItem(BlockScene *parent, qreal x, qreal y);
     ~BlockItem();
 
+    void setHighlight(bool value);
     virtual void compute() { return; }
 
     QList<BlockSlotIn *> in_slots;

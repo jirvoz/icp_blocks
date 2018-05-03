@@ -28,6 +28,7 @@ public:
 
     //! \brief Update pipe position when moving attached block.
     void updatePosition();
+    QMap<QString, double> *getData();
 
 private:
     BlockScene *parent_scene;  //!< Parent scene object the pipe is drawn on.

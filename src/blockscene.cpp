@@ -8,9 +8,10 @@ BlockScene::BlockScene(QGraphicsView *parent)
     viewParent = parent;
     drawPipe = false;
     line = nullptr;
-    blocks.append(new BlockItem(this, 10, 20));
-    blocks.append(new BlockItem(this, 210, 150));
+    blocks.append(new BlockItem_vec3(this, 10, 20));
+    blocks.append(new BlockItem_abs3(this, 210, 150));
     pipes.append(new BlockPipe(this, blocks[0]->out_slots[0], blocks[1]->in_slots[0]));
+	blocks[1]->compute();
 }
 
 void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)

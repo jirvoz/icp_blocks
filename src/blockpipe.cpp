@@ -20,6 +20,13 @@ void BlockPipe::updatePosition()
     setLine(QLineF(outSlot->scenePos(), inSlot->scenePos()));
 }
 
+QMap<QString, double> *BlockPipe::getData()
+{
+    if (!outSlot)
+		return nullptr;
+	return outSlot->getData();
+}
+
 BlockPipe::~BlockPipe()
 {
 

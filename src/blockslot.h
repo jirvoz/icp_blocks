@@ -16,6 +16,7 @@ public:
     BlockSlot(BlockItem *parent, qreal x, qreal y);
 
     void setPipe(BlockPipe *pipe) { this->pipe = pipe; }
+    BlockPipe *getPipe() { return this->pipe; }
 
     virtual QMap<QString, double> *getData() = 0;
     virtual DataType getType() = 0;
@@ -34,7 +35,7 @@ public:
     QMap<QString, double> *getData() override;
 private:
     DataType valueType;
-    DataContainer *valueData;
+    DataContainer *valueData; //FIXME: remove?
 };
 
 class BlockSlotOut : public BlockSlot

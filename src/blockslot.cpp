@@ -41,7 +41,10 @@ DataType BlockSlotIn::getType()
 
 QMap<QString, double> *BlockSlotIn::getData()
 {
-    return valueData ? valueData->getData() : nullptr;
+	auto pipe = getPipe();
+	if (!pipe)
+		return nullptr;
+	return pipe->getData();
 }
 
 BlockSlotOut::BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type) :

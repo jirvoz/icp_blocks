@@ -9,6 +9,7 @@
 
 #include "blockitem.h"
 #include "blockpipe.h"
+#include "datacontainer.h"
 
 class BlockItem;
 class BlockPipe;
@@ -85,11 +86,14 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
 
 private:
+    QGraphicsView *viewParent;  //!< QGraphicsView the scene is drawn on
+
     QList<BlockItem *> blocks;  //!< list of blocks in schema
     QList<BlockPipe *> pipes;   //!< list of pipes in schema
-    QGraphicsLineItem *line;    //!< temporary line when drawin pipe
-    QGraphicsView *viewParent;  //!< QGraphicsView the scene is drawn on
+
     bool drawPipe;              //!< true if pipes can be drawn
+    QGraphicsLineItem *line;    //!< temporary line when drawin pipe
+    BlockSlot *startingSlot;     //!< slot where drawn line begins
 };
 
 #endif // BLOCKSCENE_H

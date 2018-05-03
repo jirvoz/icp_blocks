@@ -24,6 +24,7 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         if (overItem) {
             BlockSlotOut *bs = dynamic_cast<BlockSlotOut *>(overItem);
             if (bs) {
+                startingSlot = bs;
                 line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
                         mouseEvent->scenePos()));
                 addItem(line);
@@ -43,11 +44,6 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
         if (bs)
             updateLabel(bs->getValueString());
     }
-
-    /*if (mouseEvent->button() != Qt::LeftButton) {
-        QGraphicsScene::mouseMoveEvent(mouseEvent);
-        return;
-    }*/
 
     // Redraw temporary pipe
     if (drawPipe && line != nullptr) {
@@ -73,6 +69,16 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         removeItem(line);
         delete line;
         line = nullptr;
+
+        QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
+        if (overItem) {
+            BlockSlotIn *bs = dynamic_cast<BlockSlotIn *>(overItem);
+            if (bs && bs->getType() == startingSlot->getType()) {
+                // Add new pipe
+                BlockPipe *p = new BlockPipe(this, startingSlot, bs);
+                addItem(p);
+            }
+        }
     }
 
     QGraphicsScene::mouseReleaseEvent(mouseEvent);

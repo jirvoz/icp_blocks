@@ -15,7 +15,7 @@ BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
     // Slots
     in_slots.append(new BlockSlotIn(this, 0, 10, DataType::NUMBER));
     in_slots.append(new BlockSlotIn(this, 0, 80, DataType::NUMBER));
-    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::VEC2));
+    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::NUMBER));
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }

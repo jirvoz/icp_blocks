@@ -59,6 +59,9 @@ public:
     //! \brief Adds generic block
     void addBlock();
 
+    QList<BlockItem *> blocks;  //!< list of blocks in schema
+    QList<BlockPipe *> pipes;   //!< list of pipes in schema
+
 signals:
     /*!
      * \brief Sends information text to be displayed in GUI.
@@ -87,9 +90,6 @@ protected:
 
 private:
     QGraphicsView *viewParent;  //!< QGraphicsView the scene is drawn on
-
-    QList<BlockItem *> blocks;  //!< list of blocks in schema
-    QList<BlockPipe *> pipes;   //!< list of pipes in schema
 
     bool drawPipe;              //!< true if pipes can be drawn
     QGraphicsLineItem *line;    //!< temporary line when drawin pipe

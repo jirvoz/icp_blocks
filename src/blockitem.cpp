@@ -34,5 +34,15 @@ void BlockItem::setHighlight(bool value)
 
 BlockItem::~BlockItem()
 {
+    foreach (auto sl, in_slots) {
+        if (sl->getPipe())
+            delete sl->getPipe();
+    }
+    foreach (auto sl, out_slots) {
+        if (sl->getPipe())
+            delete sl->getPipe();
+    }
 
+    parent_scene->removeItem(this);
+    parent_scene->blocks.removeOne(this);
 }

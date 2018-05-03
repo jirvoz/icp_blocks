@@ -76,6 +76,7 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
             if (bs && bs->getType() == startingSlot->getType()) {
                 // Add new pipe
                 BlockPipe *p = new BlockPipe(this, startingSlot, bs);
+                pipes.append(p);
                 addItem(p);
             }
         }
@@ -110,9 +111,9 @@ void BlockScene::saveToFile(QString filename)
 
 void BlockScene::removeSelected()
 {
-    //foreach (QGraphicsItem item, selectedItems()) {
-
-    //}
+    foreach (QGraphicsItem *item, selectedItems()) {
+        delete item;
+    }
 }
 
 void BlockScene::addBlock()

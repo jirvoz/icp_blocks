@@ -66,6 +66,11 @@ void MainWindow::on_actionAdd_triggered()
     scene->addBlock();
 }
 
+void MainWindow::on_actionRemove_triggered()
+{
+    scene->removeSelected();
+}
+
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this, "About Block editor",

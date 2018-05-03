@@ -30,7 +30,8 @@ SOURCES += \
     blockscene.cpp \
     blockslot.cpp \
     blockpipe.cpp \
-    datacontainer.cpp
+    datacontainer.cpp \
+    inputdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     blockscene.h \
     blockslot.h \
     blockpipe.h \
-    datacontainer.h
+    datacontainer.h \
+    inputdialog.h
 
 FORMS += \
         mainwindow.ui

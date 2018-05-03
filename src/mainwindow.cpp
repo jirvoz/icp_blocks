@@ -12,7 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene = new BlockScene(ui->graphicsView);
     ui->graphicsView->setScene(scene);
+    setWindowTitle("Block editor - unnamed file");
+
     connect(scene, SIGNAL(updateLabel(QString)), this, SLOT(updateLabel(QString)));
+
     statusBar()->showMessage("Hello there, general Kenobi.");
 }
 
@@ -29,6 +32,7 @@ void MainWindow::updateLabel(QString text)
 void MainWindow::on_actionNew_triggered()
 {
     scene->clearScene();
+    setWindowTitle("Block editor - unnamed file");
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -36,6 +40,7 @@ void MainWindow::on_actionOpen_triggered()
     QString filename = QFileDialog::getOpenFileName(this, "Open schema");
     if (!filename.isEmpty())
         scene->loadFromFile(filename);
+    setWindowTitle("Block editor - " + filename);
 }
 
 void MainWindow::on_actionSave_triggered()
@@ -43,6 +48,7 @@ void MainWindow::on_actionSave_triggered()
     QString filename = QFileDialog::getSaveFileName(this, "Save schema");
     if (!filename.isEmpty())
         scene->saveToFile(filename);
+    setWindowTitle("Block editor - " + filename);
 }
 
 void MainWindow::on_actionExit_triggered()

@@ -13,34 +13,83 @@
 class BlockItem;
 class BlockPipe;
 
+/*!
+* \brief Main scene class for handling drawable items.
+* Contains lists of blocks and pipes and manages them.
+* Is instance of QGraphicsScene object which is then
+* displayed using QGraphicsView widget in GUI.
+*/
 class BlockScene : public QGraphicsScene
 {
     Q_OBJECT
 
 public:
+    /*!
+     * \brief Scene constructor.
+     * \param parent QGraphicsView widget, which draws the scene
+     */
     BlockScene(QGraphicsView *parent);
 
+    //! \brief Remove all objects from scene.
     void clearScene(); // for "New" button to remove all entities
+
+    /*!
+     * \brief Loads scene content from file.
+     * \param filename path to the file
+     */
+
     void loadFromFile(QString filename);
+    /*!
+     * \brief Saves scene content to file.
+     * \param filename path to the file
+     */
+
     void saveToFile(QString filename);
+
+    //! \brief Removes all selected objects from scene
     void removeSelected();
+
+    /*!
+     * \brief Switches between drawing pipes and moving blocks
+     * \param value true if pipes will be drawn
+     */
     void setDrawPipe(bool value) { drawPipe = value; }
+
+    //! \brief Adds generic block
     void addBlock();
 
 signals:
+    /*!
+     * \brief Sends information text to be displayed in GUI.
+     * \param text text to be displayed
+     */
     void updateLabel(QString text);
 
 protected:
+    /*!
+     * \brief Overriden method mousePressEvent from inherited class
+     * \param mouseEvent mouse data
+     */
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+
+    /*!
+     * \brief Overriden method mouseMoveEvent from inherited class
+     * \param mouseEvent mouse data
+     */
     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+
+    /*!
+     * \brief Overriden method mouseReleaseEvent from inherited class
+     * \param mouseEvent mouse data
+     */
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
 
 private:
-    QList<BlockItem *> blocks;
-    QList<BlockPipe *> pipes;
-    QGraphicsLineItem *line;
-    QGraphicsView *viewParent;
-    bool drawPipe;
+    QList<BlockItem *> blocks;  //!< list of blocks in schema
+    QList<BlockPipe *> pipes;   //!< list of pipes in schema
+    QGraphicsLineItem *line;    //!< temporary line when drawin pipe
+    QGraphicsView *viewParent;  //!< QGraphicsView the scene is drawn on
+    bool drawPipe;              //!< true if pipes can be drawn
 };
 
 #endif // BLOCKSCENE_H

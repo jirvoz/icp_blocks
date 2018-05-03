@@ -3,6 +3,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "inputdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,15 @@ MainWindow::~MainWindow()
 void MainWindow::updateLabel(QString text)
 {
     ui->label->setText(text);
+}
+
+bool MainWindow::getSlotInput(QMap<QString, double> *data, QString slotName)
+{
+    InputDialog diag(data, slotName, this);
+    if (diag.exec() == QDialog::Accepted)
+        return true;
+
+    return false;
 }
 
 void MainWindow::on_actionNew_triggered()

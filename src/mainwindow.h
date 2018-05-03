@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "blockscene.h"
+#include "blockslot.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,7 @@ public:
 
 private slots:
     void updateLabel(QString text);
+    bool getSlotInput(QMap<QString, double> *data, QString slotName);
     void on_actionNew_triggered();
     void on_actionOpen_triggered();
     void on_actionSave_triggered();

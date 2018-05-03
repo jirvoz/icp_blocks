@@ -12,6 +12,11 @@ BlockScene::BlockScene(QGraphicsView *parent)
     blocks.append(new BlockItem(this, 210, 150));
 }
 
+BlockScene::~BlockScene()
+{
+    clearScene();
+}
+
 void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     if (mouseEvent->button() != Qt::LeftButton)
@@ -36,12 +41,17 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
-    // Show values of slot when hovering over
+    // Show values of slot or pipe when hovering over
     QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
     if (overItem) {
         BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem);
         if (bs)
             updateLabel("Details:\n" + bs->getValueString());
+        else{
+            BlockPipe *p = dynamic_cast<BlockPipe *>(overItem);
+            if (p)
+                ; // TODO updateLabel("Details:\n" + p->getValueString());
+        }
     }
 
     // Redraw temporary pipe

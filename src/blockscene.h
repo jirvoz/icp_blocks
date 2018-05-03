@@ -31,6 +31,9 @@ public:
      */
     BlockScene(QGraphicsView *parent);
 
+    //! \brief Scene destructor
+    ~BlockScene();
+
     //! \brief Remove all objects from scene.
     void clearScene(); // for "New" button to remove all entities
 

@@ -6,8 +6,6 @@
 
 #include "blockscene.h"
 #include "blockslot.h"
-#include "blockslotin.h"
-#include "blockslotout.h"
 
 class BlockScene;
 class BlockSlot;

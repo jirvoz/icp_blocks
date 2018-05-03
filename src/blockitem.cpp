@@ -1,5 +1,4 @@
 #include "blockitem.h"
-
 #include "datacontainer.h"
 
 BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)

@@ -27,3 +27,34 @@ QString BlockSlot::getValueString()
     }
     return ret;
 }
+
+BlockSlotIn::BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type) :
+    BlockSlot(parent, x, y),
+    valueType(type),
+    valueData(nullptr)
+{}
+
+DataType BlockSlotIn::getType()
+{
+    return valueType;
+}
+
+QMap<QString, double> *BlockSlotIn::getData()
+{
+    return valueData ? valueData->getData() : nullptr;
+}
+
+BlockSlotOut::BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type) :
+    BlockSlot(parent, x, y),
+    valueData(type)
+{}
+
+DataType BlockSlotOut::getType()
+{
+    return valueData.getType();
+}
+
+QMap<QString, double> *BlockSlotOut::getData()
+{
+    return valueData.getData();
+}

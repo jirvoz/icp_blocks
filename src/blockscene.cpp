@@ -10,7 +10,9 @@ BlockScene::BlockScene(QGraphicsView *parent)
     line = nullptr;
     blocks.append(new BlockItem_vec3(this, 10, 20));
     blocks.append(new BlockItem_abs3(this, 210, 150));
-    pipes.append(new BlockPipe(this, blocks[0]->out_slots[0], blocks[1]->in_slots[0]));
+    BlockPipe *p = new BlockPipe(this, blocks[0]->out_slots[0], blocks[1]->in_slots[0]);
+    addItem(p);
+
 	blocks[1]->compute();
 }
 
@@ -25,6 +27,7 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         if (overItem) {
             BlockSlotOut *bs = dynamic_cast<BlockSlotOut *>(overItem);
             if (bs) {
+                startingSlot = bs;
                 line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
                         mouseEvent->scenePos()));
                 addItem(line);
@@ -42,13 +45,8 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if (overItem) {
         BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem);
         if (bs)
-            updateLabel(bs->getValueString());
+            updateLabel("Details:\n" + bs->getValueString());
     }
-
-    /*if (mouseEvent->button() != Qt::LeftButton) {
-        QGraphicsScene::mouseMoveEvent(mouseEvent);
-        return;
-    }*/
 
     // Redraw temporary pipe
     if (drawPipe && line != nullptr) {
@@ -64,16 +62,21 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if (mouseEvent->button() != Qt::LeftButton)
         return;
 
-    // Update pipes positions
-    foreach (auto pipe, pipes) {
-        pipe->updatePosition();
-    }
-
     // Finalize drawing of pipe
     if (drawPipe && line != nullptr) {
         removeItem(line);
         delete line;
         line = nullptr;
+
+        QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
+        if (overItem) {
+            BlockSlotIn *bs = dynamic_cast<BlockSlotIn *>(overItem);
+            if (bs && bs->getType() == startingSlot->getType()) {
+                // Add new pipe
+                BlockPipe *p = new BlockPipe(this, startingSlot, bs);
+                addItem(p);
+            }
+        }
     }
 
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
@@ -81,11 +84,6 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void BlockScene::clearScene()
 {
-    foreach (auto pipe, pipes) {
-        removeItem(pipe);
-    }
-    pipes.clear();
-
     foreach (auto block, blocks) {
         removeItem(block);
     }
@@ -105,9 +103,9 @@ void BlockScene::saveToFile(QString filename)
 
 void BlockScene::removeSelected()
 {
-    //foreach (QGraphicsItem item, selectedItems()) {
-
-    //}
+    foreach (QGraphicsItem *item, selectedItems()) {
+        delete item;
+    }
 }
 
 void BlockScene::addBlock()

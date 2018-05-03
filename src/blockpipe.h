@@ -30,10 +30,11 @@ public:
     void updatePosition();
     QMap<QString, double> *getData();
 
-private:
-    BlockScene *parent_scene;  //!< Parent scene object the pipe is drawn on.
     BlockSlot *outSlot;        //!< Output slot of a block providing data
     BlockSlot *inSlot;         //!< Input slot of a block for delivering data
+
+private:
+    BlockScene *parent_scene;  //!< Parent scene object the pipe is drawn on.
 };
 
 #endif // BLOCKPIPE_H

@@ -9,13 +9,14 @@
 
 #include "blockitem.h"
 #include "blockpipe.h"
+#include "datacontainer.h"
 
 class BlockItem;
 class BlockPipe;
 
 /*!
 * \brief Main scene class for handling drawable items.
-* Contains lists of blocks and pipes and manages them.
+* Contains lists of blocks with pipes and manages them.
 * Is instance of QGraphicsScene object which is then
 * displayed using QGraphicsView widget in GUI.
 */
@@ -58,6 +59,8 @@ public:
     //! \brief Adds generic block
     void addBlock();
 
+    QList<BlockItem *> blocks;  //!< list of blocks in schema
+
 signals:
     /*!
      * \brief Sends information text to be displayed in GUI.
@@ -85,11 +88,11 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
 
 private:
-    QList<BlockItem *> blocks;  //!< list of blocks in schema
-    QList<BlockPipe *> pipes;   //!< list of pipes in schema
-    QGraphicsLineItem *line;    //!< temporary line when drawin pipe
     QGraphicsView *viewParent;  //!< QGraphicsView the scene is drawn on
+
     bool drawPipe;              //!< true if pipes can be drawn
+    QGraphicsLineItem *line;    //!< temporary line when drawin pipe
+    BlockSlot *startingSlot;     //!< slot where drawn line begins
 };
 
 #endif // BLOCKSCENE_H

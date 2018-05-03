@@ -23,11 +23,6 @@ void BlockItem::setHighlight(bool value)
         setBrush(Qt::white);
 }
 
-BlockItem::~BlockItem()
-{
-
-}
-
 BlockItem_abs3::BlockItem_abs3(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
@@ -169,4 +164,35 @@ void BlockItem_num2::compute()
 
     (*out_slots[0]->getData())["number"] = in_data["x"];
     (*out_slots[1]->getData())["number"] = in_data["y"];
+}
+
+QVariant BlockItem::itemChange(GraphicsItemChange change, const QVariant &value)
+{
+    if (change == QGraphicsItem::ItemPositionChange) {
+        foreach (auto sl, in_slots) {
+        if (sl->getPipe())
+            sl->getPipe()->updatePosition();
+        }
+        foreach (auto sl, out_slots) {
+        if (sl->getPipe())
+            sl->getPipe()->updatePosition();
+        }
+    }
+
+    return value;
+}
+
+BlockItem::~BlockItem()
+{
+    foreach (auto sl, in_slots) {
+        if (sl->getPipe())
+            delete sl->getPipe();
+    }
+    foreach (auto sl, out_slots) {
+        if (sl->getPipe())
+            delete sl->getPipe();
+    }
+
+    parent_scene->removeItem(this);
+    parent_scene->blocks.removeOne(this);
 }

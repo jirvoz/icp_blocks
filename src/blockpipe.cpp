@@ -29,5 +29,7 @@ QMap<QString, double> *BlockPipe::getData()
 
 BlockPipe::~BlockPipe()
 {
-
+    outSlot->setPipe(nullptr);
+    inSlot->setPipe(nullptr);
+    parent_scene->removeItem(this);
 }

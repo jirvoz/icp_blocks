@@ -24,6 +24,9 @@ public:
     QList<BlockSlotIn *> in_slots;
     QList<BlockSlotOut *> out_slots;
 
+protected:
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
+
 private:
     BlockScene *parent_scene;
 };

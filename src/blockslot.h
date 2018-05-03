@@ -15,6 +15,7 @@ class BlockSlot : public QGraphicsRectItem
 public:
     BlockSlot(BlockItem *parent, qreal x, qreal y);
 
+    BlockPipe *getPipe() const { return this->pipe; }
     void setPipe(BlockPipe *pipe) { this->pipe = pipe; }
     BlockPipe *getPipe() { return this->pipe; }
 

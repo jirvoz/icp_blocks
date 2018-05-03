@@ -25,5 +25,4 @@ BlockPipe::~BlockPipe()
     outSlot->setPipe(nullptr);
     inSlot->setPipe(nullptr);
     parent_scene->removeItem(this);
-    parent_scene->pipes.removeOne(this);
 }

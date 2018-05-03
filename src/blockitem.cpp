@@ -32,6 +32,22 @@ void BlockItem::setHighlight(bool value)
         setBrush(Qt::white);
 }
 
+QVariant BlockItem::itemChange(GraphicsItemChange change, const QVariant &value)
+{
+    if (change == QGraphicsItem::ItemPositionChange) {
+        foreach (auto sl, in_slots) {
+        if (sl->getPipe())
+            sl->getPipe()->updatePosition();
+        }
+        foreach (auto sl, out_slots) {
+        if (sl->getPipe())
+            sl->getPipe()->updatePosition();
+        }
+    }
+
+    return value;
+}
+
 BlockItem::~BlockItem()
 {
     foreach (auto sl, in_slots) {

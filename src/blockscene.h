@@ -16,7 +16,7 @@ class BlockPipe;
 
 /*!
 * \brief Main scene class for handling drawable items.
-* Contains lists of blocks and pipes and manages them.
+* Contains lists of blocks with pipes and manages them.
 * Is instance of QGraphicsScene object which is then
 * displayed using QGraphicsView widget in GUI.
 */
@@ -60,7 +60,6 @@ public:
     void addBlock();
 
     QList<BlockItem *> blocks;  //!< list of blocks in schema
-    QList<BlockPipe *> pipes;   //!< list of pipes in schema
 
 signals:
     /*!

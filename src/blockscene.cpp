@@ -62,7 +62,7 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
         else{
             BlockPipe *p = dynamic_cast<BlockPipe *>(overItem);
             if (p)
-                ; // TODO updateLabel("Details:\n" + p->getValueString());
+                updateLabel("Details:\n" + p->getValueString());
         }
     }
 

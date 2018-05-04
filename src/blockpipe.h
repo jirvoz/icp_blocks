@@ -42,6 +42,12 @@ public:
      */
     QMap<QString, double> *getData();
 
+    /**
+     * \brief Get value represented as string
+     * \return string representing value
+     */
+    QString getValueString();
+
     BlockSlot *outSlot;        //!< Output slot of a block providing data
     BlockSlot *inSlot;         //!< Input slot of a block for delivering data
 

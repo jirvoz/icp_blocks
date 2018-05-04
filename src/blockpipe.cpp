@@ -40,3 +40,21 @@ BlockPipe::~BlockPipe()
     inSlot->setPipe(nullptr);
     parent_scene->removeItem(this);
 }
+
+QString BlockPipe::getValueString()
+{
+    QString ret;
+    auto *d = getData();
+    if (!d)
+        return QString("");
+
+    QMapIterator<QString, double> it(*d);
+
+    while (it.hasNext()) {
+        it.next();
+        ret.append(QString("%1: %2").arg(it.key()).arg(it.value()));
+        if (it.hasNext())
+            ret.append("; ");
+    }
+    return ret;
+}

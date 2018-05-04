@@ -31,7 +31,7 @@ QString BlockSlot::getValueString()
 BlockSlotIn::BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type) :
     BlockSlot(parent, x, y),
     valueType(type),
-    valueData(nullptr)
+    valueData(type)
 {}
 
 DataType BlockSlotIn::getType()
@@ -41,10 +41,26 @@ DataType BlockSlotIn::getType()
 
 QMap<QString, double> *BlockSlotIn::getData()
 {
-	auto pipe = getPipe();
-	if (!pipe)
-		return nullptr;
-	return pipe->getData();
+    auto pipe = getPipe();
+    if (!pipe)
+        return valueData.getData();
+    return pipe->getData();
+}
+
+QMap<QString, double> *BlockSlotIn::getInputMap()
+{
+    auto pipe = getPipe();
+    if (pipe)
+        return nullptr;
+    return valueData.getData();
+}
+
+bool BlockSlotIn::isDataReady()
+{
+    auto pipe = getPipe();
+    if (!pipe)
+        return true;
+    return pipe->outSlot->getBlock()->computed;
 }
 
 BlockSlotOut::BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type) :

@@ -27,6 +27,7 @@ private slots:
     void on_actionAdd_triggered();
     void on_actionRemove_triggered();
     void on_actionAbout_triggered();
+    void on_actionCompute_all_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -18,8 +18,17 @@ public:
     BlockPipe *getPipe() const { return this->pipe; }
     void setPipe(BlockPipe *pipe) { this->pipe = pipe; }
     BlockPipe *getPipe() { return this->pipe; }
+    BlockItem *getBlock() { return this->parent_block; }
 
+    /**
+     * \brief Get data value
+     * \return QMap with data
+     */
     virtual QMap<QString, double> *getData() = 0;
+    /**
+     * \brief Get data type
+     * \return data type
+     */
     virtual DataType getType() = 0;
     QString getValueString();
 
@@ -33,10 +42,27 @@ class BlockSlotIn : public BlockSlot
 public:
     BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type);
     DataType getType() override;
+
+    /**
+     * \brief Get data
+     * \return QMap with data
+     */
     QMap<QString, double> *getData() override;
+
+    /**
+     * \brief Check if input is ready
+     * \return true if input is ready
+     */
+    bool isDataReady();
+
+    /**
+     * \brief Get map to be filled
+     * \return QMap to be filled, NULL if pipe is connected
+     */
+    QMap<QString, double> *getInputMap();
 private:
     DataType valueType;
-    DataContainer *valueData; //FIXME: remove?
+    DataContainer valueData; //! < user input data
 };
 
 class BlockSlotOut : public BlockSlot

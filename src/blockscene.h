@@ -62,6 +62,27 @@ public:
     //! \brief Adds generic block
     void addBlock();
 
+    /*!
+     * \brief Computes all blocks
+     * \param fake check for loops only
+     * \return true if OK
+     */
+    bool compute(bool fake = false);
+
+    /*!
+     * \brief Starts computation
+     * \param fake fake computation
+     * \return true if OK
+     */
+    bool computeInit(bool fake = false);
+
+    /*!
+     * \brief Perform one computation
+     * \param fake fake computation
+     * \return false if there is no computation to be performed
+     */
+    bool computeStep(bool fake = false);
+
     QList<BlockItem *> blocks;  //!< list of blocks in schema
 
 signals:
@@ -96,6 +117,11 @@ private:
     bool drawPipe;              //!< true if pipes can be drawn
     QGraphicsLineItem *line;    //!< temporary line when drawin pipe
     BlockSlot *startingSlot;     //!< slot where drawn line begins
+
+    bool computeInProgress; //!< Compute is in progress
+    QList<BlockItem *> computeWait; //!< Queue of blocks waiting for input
+    QList<BlockItem *> computeReady; //!< Queue of ready blocks
+    BlockItem *computingNow; //!< Block which is computed now
 };
 
 #endif // BLOCKSCENE_H

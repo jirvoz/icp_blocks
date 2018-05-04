@@ -3,7 +3,7 @@
 #include "blockitem.h"
 #include "datacontainer.h"
 
-BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y)
+BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y) : computed(false)
 {
     parent_scene = parent;
     parent_scene->addItem(this);
@@ -21,6 +21,15 @@ void BlockItem::setHighlight(bool value)
         setBrush(Qt::yellow);
     else
         setBrush(Qt::white);
+}
+
+bool BlockItem::isReady()
+{
+    foreach (auto sl, in_slots) {
+        if (!sl->isDataReady())
+            return false;
+    }
+    return true;
 }
 
 BlockItem_abs3::BlockItem_abs3(BlockScene *parent, qreal x, qreal y):

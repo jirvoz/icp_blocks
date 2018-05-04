@@ -21,6 +21,11 @@ public:
     void setHighlight(bool value);
     virtual void compute() { return; }
 
+    bool isReady();
+    bool askForInput() {return true;}
+
+    bool computed;
+
     QList<BlockSlotIn *> in_slots;
     QList<BlockSlotOut *> out_slots;
 

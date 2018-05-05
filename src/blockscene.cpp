@@ -107,7 +107,7 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 void BlockScene::clearScene()
 {
     foreach (auto block, blocks) {
-        removeItem(block);
+        delete block;
     }
     blocks.clear();
 }

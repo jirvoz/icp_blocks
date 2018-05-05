@@ -126,12 +126,6 @@ void BlockScene::removeSelected()
     }
 }
 
-void BlockScene::addBlock()
-{
-    blocks.append(new BlockItem(this, std::rand() % 101 - 50,
-                                std::rand() % 101 - 50));
-}
-
 bool BlockScene::compute(bool fake)
 {
     computeInit(fake);

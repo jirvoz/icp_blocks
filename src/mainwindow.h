@@ -11,6 +11,7 @@
 #include <QMainWindow>
 
 #include "blockscene.h"
+#include "blockitem.h"
 #include "blockslot.h"
 
 namespace Ui {
@@ -38,23 +39,27 @@ private slots:
      * \param text text to display
      */
     void updateLabel(QString text);
-    /*!
-     * \brief Launch dialog for entering input values for unconnected slots
-     * \param data pointer to data structure to fill
-     * \param slotName name of slot for displaying in dialog title
-     * \return success of confirming the dialog
-     */
-    bool getSlotInput(QMap<QString, double> *data, QString slotName);
     void on_actionNew_triggered();
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_actionExit_triggered();
-    void on_pushButton_toggled(bool checked);
-    void on_actionAdd_triggered();
-    void on_actionRemove_triggered();
     void on_actionAbout_triggered();
     void on_actionCompute_all_triggered();
     void on_actionStep_triggered();
+
+    void on_removePushButton_clicked();
+
+    void on_abs3PushButton_clicked();
+
+    void on_vec3PushButton_clicked();
+
+    void on_num3PushButton_clicked();
+
+    void on_abs2PushButton_clicked();
+
+    void on_vec2PushButton_clicked();
+
+    void on_num2PushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

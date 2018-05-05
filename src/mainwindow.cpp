@@ -34,16 +34,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateLabel(QString text)
 {
-    ui->label->setText(text);
-}
-
-bool MainWindow::getSlotInput(QMap<QString, double> *data, QString slotName)
-{
-    InputDialog diag(data, slotName, this);
-    if (diag.exec() == QDialog::Accepted)
-        return true;
-
-    return false;
+    ui->dataLabel->setText(text);
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -73,21 +64,6 @@ void MainWindow::on_actionExit_triggered()
     QApplication::quit();
 }
 
-void MainWindow::on_pushButton_toggled(bool checked)
-{
-    scene->setDrawPipe(checked);
-}
-
-void MainWindow::on_actionAdd_triggered()
-{
-    scene->addBlock();
-}
-
-void MainWindow::on_actionRemove_triggered()
-{
-    scene->removeSelected();
-}
-
 void MainWindow::on_actionCompute_all_triggered()
 {
     scene->compute();
@@ -104,4 +80,39 @@ void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this, "About Block editor",
                        "Authors: Václav Doležal, Jiří Vozár");
+}
+
+void MainWindow::on_removePushButton_clicked()
+{
+    scene->removeSelected();
+}
+
+void MainWindow::on_abs3PushButton_clicked()
+{
+    scene->createBlock<BlockItem_abs3>();
+}
+
+void MainWindow::on_vec3PushButton_clicked()
+{
+    scene->createBlock<BlockItem_vec3>();
+}
+
+void MainWindow::on_num3PushButton_clicked()
+{
+    scene->createBlock<BlockItem_num3>();
+}
+
+void MainWindow::on_abs2PushButton_clicked()
+{
+    scene->createBlock<BlockItem_abs2>();
+}
+
+void MainWindow::on_vec2PushButton_clicked()
+{
+    scene->createBlock<BlockItem_vec2>();
+}
+
+void MainWindow::on_num2PushButton_clicked()
+{
+    scene->createBlock<BlockItem_num2>();
 }

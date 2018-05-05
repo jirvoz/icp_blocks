@@ -66,8 +66,12 @@ public:
      */
     void setDrawPipe(bool value) { drawPipe = value; }
 
-    //! \brief Adds generic block
-    void addBlock();
+    /*!
+     * \brief Add new block to scene
+     * Add new block to scene wit type specified through template
+     */
+    template<class T> void createBlock()
+    { blocks.append(new T(this, std::rand() % 101 - 50, std::rand() % 101 - 50)); }
 
     /*!
      * \brief Computes all blocks

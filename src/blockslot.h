@@ -23,7 +23,7 @@ class BlockPipe;
 class BlockSlot : public QGraphicsRectItem
 {
 public:
-    BlockSlot(BlockItem *parent, qreal x, qreal y);
+    BlockSlot(BlockItem *parent);
 
     /**
      * \brief Get associated pipe
@@ -69,7 +69,7 @@ private:
 class BlockSlotIn : public BlockSlot
 {
 public:
-    BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type);
+    BlockSlotIn(BlockItem *parent, DataType type);
     DataType getType() override;
 
     /**
@@ -100,7 +100,7 @@ private:
 class BlockSlotOut : public BlockSlot
 {
 public:
-    BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type);
+    BlockSlotOut(BlockItem *parent, DataType type);
     DataType getType() override;
     QMap<QString, double> *getData() override;
 private:

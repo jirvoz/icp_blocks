@@ -60,6 +60,9 @@ public:
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
 
+    /// \brief Lays out slots
+    void layoutSlots();
+
 private:
     BlockScene *parent_scene;
 };

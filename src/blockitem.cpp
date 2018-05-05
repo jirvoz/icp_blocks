@@ -59,12 +59,47 @@ bool BlockItem::isReady()
     return true;
 }
 
+void BlockItem::layoutSlots()
+{
+    qreal spacing, pos;
+    qreal start = 10, end = 90, slot_size = 15;
+
+    auto sz = in_slots.size();
+    if (sz == 0) {
+        // do nothing
+    } else if (sz == 1) {
+        in_slots[0]->setPos(slot_size/2, 50);
+    } else {
+        spacing = (end - start) / (sz - 1);
+        pos = start;
+        foreach (auto sl, in_slots) {
+            sl->setPos(slot_size/2, pos);
+            pos += spacing;
+        }
+    }
+
+    sz = out_slots.size();
+    if (sz == 0) {
+        // do nothing
+    } else if (sz == 1) {
+        out_slots[0]->setPos(100 - (slot_size/2), 50);
+    } else {
+        spacing = (end - start) / (sz - 1);
+        pos = start;
+        foreach (auto sl, out_slots) {
+            sl->setPos(100 - (slot_size/2), pos);
+            pos += spacing;
+        }
+    }
+}
+
 BlockItem_abs3::BlockItem_abs3(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
     // Slots
-    in_slots.append(new BlockSlotIn(this, 0, 45, DataType::VEC3));
-    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::VEC3));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    layoutSlots();
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }
@@ -87,10 +122,11 @@ BlockItem_vec3::BlockItem_vec3(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
     // Slots
-    in_slots.append(new BlockSlotIn(this, 0, 10, DataType::NUMBER));
-    in_slots.append(new BlockSlotIn(this, 0, 45, DataType::NUMBER));
-    in_slots.append(new BlockSlotIn(this, 0, 80, DataType::NUMBER));
-    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::VEC3));
+    in_slots.append(new BlockSlotIn(this, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::NUMBER));
+    out_slots.append(new BlockSlotOut(this, DataType::VEC3));
+    layoutSlots();
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }
@@ -112,10 +148,11 @@ BlockItem_num3::BlockItem_num3(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
     // Slots
-    in_slots.append(new BlockSlotIn(this, 0, 45, DataType::VEC3));
-    out_slots.append(new BlockSlotOut(this, 90, 10, DataType::NUMBER));
-    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::NUMBER));
-    out_slots.append(new BlockSlotOut(this, 90, 80, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::VEC3));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    layoutSlots();
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }
@@ -137,8 +174,9 @@ BlockItem_abs2::BlockItem_abs2(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
     // Slots
-    in_slots.append(new BlockSlotIn(this, 0, 45, DataType::VEC2));
-    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::VEC2));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    layoutSlots();
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }
@@ -160,9 +198,10 @@ BlockItem_vec2::BlockItem_vec2(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
     // Slots
-    in_slots.append(new BlockSlotIn(this, 0, 10, DataType::NUMBER));
-    in_slots.append(new BlockSlotIn(this, 0, 45, DataType::NUMBER));
-    out_slots.append(new BlockSlotOut(this, 90, 45, DataType::VEC2));
+    in_slots.append(new BlockSlotIn(this, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::NUMBER));
+    out_slots.append(new BlockSlotOut(this, DataType::VEC2));
+    layoutSlots();
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }
@@ -183,9 +222,10 @@ BlockItem_num2::BlockItem_num2(BlockScene *parent, qreal x, qreal y):
     BlockItem(parent, x, y)
 {
     // Slots
-    in_slots.append(new BlockSlotIn(this, 0, 45, DataType::VEC2));
-    out_slots.append(new BlockSlotOut(this, 90, 10, DataType::NUMBER));
-    out_slots.append(new BlockSlotOut(this, 90, 80, DataType::NUMBER));
+    in_slots.append(new BlockSlotIn(this, DataType::VEC2));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    out_slots.append(new BlockSlotOut(this, DataType::NUMBER));
+    layoutSlots();
     foreach (auto sl, in_slots) {
         sl->setParentItem(this);
     }

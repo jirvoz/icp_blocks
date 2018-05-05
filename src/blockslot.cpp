@@ -7,12 +7,12 @@
 
 #include "blockslot.h"
 
-BlockSlot::BlockSlot(BlockItem *parent, qreal x, qreal y)
+BlockSlot::BlockSlot(BlockItem *parent)
 {
     pipe = nullptr;
     parent_block = parent;
-    setRect(-5, -5, 10, 10);
-    setPos(x + 5, y + 5);
+    setRect(-7.5, -7.5, 15, 15);
+    setPos(0, 0);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
 }
@@ -35,8 +35,8 @@ QString BlockSlot::getValueString()
     return ret;
 }
 
-BlockSlotIn::BlockSlotIn(BlockItem *parent, qreal x, qreal y, DataType type) :
-    BlockSlot(parent, x, y),
+BlockSlotIn::BlockSlotIn(BlockItem *parent, DataType type) :
+    BlockSlot(parent),
     valueType(type),
     valueData(type)
 {}
@@ -70,8 +70,8 @@ bool BlockSlotIn::isDataReady()
     return pipe->outSlot->getBlock()->computed;
 }
 
-BlockSlotOut::BlockSlotOut(BlockItem *parent, qreal x, qreal y, DataType type) :
-    BlockSlot(parent, x, y),
+BlockSlotOut::BlockSlotOut(BlockItem *parent, DataType type) :
+    BlockSlot(parent),
     valueData(type)
 {}
 

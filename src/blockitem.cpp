@@ -9,6 +9,7 @@
 
 #include "blockitem.h"
 #include "datacontainer.h"
+#include "inputdialog.h"
 
 BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y) : computed(false)
 {
@@ -28,6 +29,22 @@ void BlockItem::setHighlight(bool value)
         setBrush(Qt::yellow);
     else
         setBrush(Qt::white);
+}
+
+bool BlockItem::askForInput()
+{
+    int i = 1;
+    setHighlight(true);
+    foreach (auto sl, in_slots) {
+        auto map = sl->getInputMap();
+        if (!map)
+            continue;
+        InputDialog dialog(map, QString("slot %1").arg(i), nullptr);
+        dialog.exec();
+        i++;
+    }
+    setHighlight(false);
+    return true;
 }
 
 bool BlockItem::isReady()

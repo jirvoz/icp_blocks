@@ -29,7 +29,7 @@ public:
     virtual void compute() { return; }
 
     bool isReady();
-    bool askForInput() {return true;}
+    bool askForInput();
 
     bool computed;
 

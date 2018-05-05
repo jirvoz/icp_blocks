@@ -76,6 +76,11 @@ void MainWindow::on_actionStep_triggered()
     scene->computeStep();
 }
 
+void MainWindow::on_actionReset_triggered()
+{
+    scene->computeAbort();
+}
+
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this, "About Block editor",

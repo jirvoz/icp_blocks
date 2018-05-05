@@ -182,3 +182,15 @@ bool BlockScene::computeStep(bool fake)
 
     return true;
 }
+
+void BlockScene::computeAbort()
+{
+    if (!computeInProgress)
+        return;
+
+    computeInProgress = false;
+    if (computingNow) {
+        computingNow->setHighlight(false);
+        computingNow = nullptr;
+    }
+}

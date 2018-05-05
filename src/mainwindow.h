@@ -44,8 +44,10 @@ private slots:
     void on_actionSave_triggered();
     void on_actionExit_triggered();
     void on_actionAbout_triggered();
+
     void on_actionCompute_all_triggered();
     void on_actionStep_triggered();
+    void on_actionReset_triggered();
 
     void on_removePushButton_clicked();
 

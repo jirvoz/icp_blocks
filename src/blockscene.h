@@ -89,6 +89,11 @@ public:
     bool computeStep(bool fake = false);
 
     /*!
+     * \brief Aborts computation
+     */
+    void computeAbort();
+
+    /*!
      * \brief Check if computation is in progress
      * \return true if computation is running
      */

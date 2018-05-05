@@ -125,6 +125,7 @@ void BlockScene::saveToFile(QString filename)
 
 void BlockScene::removeSelected()
 {
+    computeAbort();
     foreach (QGraphicsItem *item, selectedItems()) {
         delete item;
     }

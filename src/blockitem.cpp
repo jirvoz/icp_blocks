@@ -14,13 +14,24 @@
 BlockItem::BlockItem(BlockScene *parent, qreal x, qreal y) : computed(false)
 {
     parent_scene = parent;
+
     parent_scene->addItem(this);
     setRect(0, 0, 100, 100);
     setPos(x, y);
     setBrush(Qt::white);
+
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
+    initName();
+}
+
+void BlockItem::initName()
+{
+    QGraphicsSimpleTextItem *nameText = new QGraphicsSimpleTextItem(this);
+    nameText->setText(this->getName());
+    nameText->setParentItem(this);
+    nameText->setPos(20, 40);
 }
 
 void BlockItem::setHighlight(bool value)
@@ -68,6 +79,7 @@ BlockItem_abs3::BlockItem_abs3(BlockScene *parent, qreal x, qreal y):
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+    initName();
 }
 
 void BlockItem_abs3::compute()
@@ -94,6 +106,7 @@ BlockItem_vec3::BlockItem_vec3(BlockScene *parent, qreal x, qreal y):
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+    initName();
 }
 
 void BlockItem_vec3::compute()
@@ -119,6 +132,7 @@ BlockItem_num3::BlockItem_num3(BlockScene *parent, qreal x, qreal y):
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+    initName();
 }
 
 void BlockItem_num3::compute()
@@ -142,6 +156,7 @@ BlockItem_abs2::BlockItem_abs2(BlockScene *parent, qreal x, qreal y):
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+    initName();
 }
 
 void BlockItem_abs2::compute()
@@ -166,6 +181,7 @@ BlockItem_vec2::BlockItem_vec2(BlockScene *parent, qreal x, qreal y):
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+    initName();
 }
 
 void BlockItem_vec2::compute()
@@ -189,6 +205,7 @@ BlockItem_num2::BlockItem_num2(BlockScene *parent, qreal x, qreal y):
     foreach (auto sl, out_slots) {
         sl->setParentItem(this);
     }
+    initName();
 }
 
 void BlockItem_num2::compute()

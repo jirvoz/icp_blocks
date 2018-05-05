@@ -38,7 +38,7 @@ public:
      * \brief Get short description of block
      * \return description of block
      */
-    virtual QString getDesc()  { return QString();}
+    virtual QString getDesc() { return QString();}
 
     void setHighlight(bool value);
     virtual void compute() { return; }
@@ -53,6 +53,7 @@ public:
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
+    void initName();
 
 private:
     BlockScene *parent_scene;

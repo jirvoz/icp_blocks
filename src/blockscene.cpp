@@ -125,7 +125,9 @@ void BlockScene::removeSelected()
 
 bool BlockScene::compute(bool fake)
 {
-    computeInit(fake);
+    if (!computeInit(fake))
+        return false;
+
     while (computeStep(fake));
 
     return !computeWait.isEmpty();

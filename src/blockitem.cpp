@@ -40,7 +40,10 @@ bool BlockItem::askForInput()
         if (!map)
             continue;
         InputDialog dialog(map, QString("slot %1").arg(i), nullptr);
-        dialog.exec();
+        if (dialog.exec() == QDialog::Rejected) {
+            setHighlight(false);
+            return false;
+        }
         i++;
     }
     setHighlight(false);

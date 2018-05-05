@@ -1,3 +1,10 @@
+/*!
+ * \file main.cpp
+ * \brief Source file for launching the app
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include "mainwindow.h"
 #include <QApplication>
 

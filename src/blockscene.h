@@ -1,3 +1,10 @@
+/*!
+ * \file blockscene.h
+ * \brief Header file for BlockScene class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef BLOCKSCENE_H
 #define BLOCKSCENE_H
 

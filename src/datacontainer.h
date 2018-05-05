@@ -1,3 +1,10 @@
+/*!
+ * \file datacontainer.h
+ * \brief Header file for DataContainer class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef DATACONTAINER_H
 #define DATACONTAINER_H
 

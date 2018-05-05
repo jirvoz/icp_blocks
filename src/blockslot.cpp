@@ -1,3 +1,10 @@
+/*!
+ * \file blockslot.cpp
+ * \brief Source file for BlockSlot class and its In and Out subclasses
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include "blockslot.h"
 
 BlockSlot::BlockSlot(BlockItem *parent, qreal x, qreal y)

@@ -1,3 +1,10 @@
+/*!
+ * \file blockitem.h
+ * \brief Header file for BlockItem class and its subclasses
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef BLOCKITEM_H
 #define BLOCKITEM_H
 

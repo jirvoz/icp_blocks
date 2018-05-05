@@ -1,3 +1,10 @@
+/*!
+ * \file inputdialog.h
+ * \brief Header file for InputDialog class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef INPUTDIALOG_H
 #define INPUTDIALOG_H
 

@@ -1,3 +1,10 @@
+/*!
+ * \file datacontainer.cpp
+ * \brief Source file for DataContainer class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include "datacontainer.h"
 
 DataContainer::DataContainer(DataType type) : type(type)
@@ -22,15 +29,15 @@ DataContainer::DataContainer(DataType type) : type(type)
 
 bool DataContainer::typeMatch(DataType t)
 {
-	return type == t;
+    return type == t;
 }
 
 QMap<QString, double> *DataContainer::getData()
 {
-	return &dict;
+    return &dict;
 }
 
 DataType DataContainer::getType()
 {
-	return type;
+    return type;
 }

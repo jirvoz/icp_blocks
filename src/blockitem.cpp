@@ -1,3 +1,10 @@
+/*!
+ * \file blockitem.cpp
+ * \brief Source file for BlockItem class and its subclasses
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include <cmath>
 
 #include "blockitem.h"

@@ -1,3 +1,10 @@
+/*!
+ * \file blockpipe.cpp
+ * \brief Source file for BlockPipe class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include "blockpipe.h"
 
 BlockPipe::BlockPipe(BlockScene *parent, BlockSlot *outSlot, BlockSlot *inSlot)
@@ -23,8 +30,8 @@ void BlockPipe::updatePosition()
 QMap<QString, double> *BlockPipe::getData()
 {
     if (!outSlot)
-		return nullptr;
-	return outSlot->getData();
+        return nullptr;
+    return outSlot->getData();
 }
 
 BlockPipe::~BlockPipe()

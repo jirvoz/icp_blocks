@@ -1,3 +1,7 @@
+# Block editor project to ICP course
+# Authors: Jiri Vozar
+#          Vaclav Dolezal
+
 all: block-editor
 
 doxygen:

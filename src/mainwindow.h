@@ -1,3 +1,10 @@
+/*!
+ * \file mainwindow.h
+ * \brief Header file for MainWindow class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

@@ -1,3 +1,10 @@
+/*!
+ * \file blockslot.h
+ * \brief Header file for BlockSlot class and its In and Out subclasses
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef BLOCKSLOT_H
 #define BLOCKSLOT_H
 

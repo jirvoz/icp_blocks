@@ -1,3 +1,10 @@
+/*!
+ * \file blockpipe.h
+ * \brief Header file for BlockPipe class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #ifndef BLOCKPIPE_H
 #define BLOCKPIPE_H
 

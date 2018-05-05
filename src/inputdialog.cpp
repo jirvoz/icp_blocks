@@ -1,3 +1,10 @@
+/*!
+ * \file inputdialog.cpp
+ * \brief Source file for InputDialog class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include <QFormLayout>
 
 #include "inputdialog.h"

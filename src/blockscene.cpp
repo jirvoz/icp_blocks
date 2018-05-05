@@ -1,3 +1,10 @@
+/*!
+ * \file blockscene.cpp
+ * \brief Source file for BlockScene class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include <QGraphicsSceneMouseEvent>
 
 #include "blockscene.h"
@@ -14,7 +21,7 @@ BlockScene::BlockScene(QGraphicsView *parent)
     BlockPipe *p = new BlockPipe(this, blocks[0]->out_slots[0], blocks[1]->in_slots[0]);
     addItem(p);
 
-	blocks[1]->compute();
+    blocks[1]->compute();
 }
 
 BlockScene::~BlockScene()

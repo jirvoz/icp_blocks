@@ -1,3 +1,10 @@
+/*!
+ * \file mainwindow.cpp
+ * \brief Source file for MainWindow class
+ * \author Jiri Vozar
+ * \author Vaclav Dolezal
+ */
+
 #include <QFileDialog>
 #include <QMessageBox>
 

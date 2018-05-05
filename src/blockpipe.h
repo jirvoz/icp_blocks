@@ -35,6 +35,11 @@ public:
 
     //! \brief Update pipe position when moving attached block.
     void updatePosition();
+
+    /*!
+     * \brief Get data from attached slot
+     * \return Dictionary of values and their names as keys
+     */
     QMap<QString, double> *getData();
 
     BlockSlot *outSlot;        //!< Output slot of a block providing data

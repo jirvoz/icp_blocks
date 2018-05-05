@@ -8,6 +8,12 @@
 #include "mainwindow.h"
 #include <QApplication>
 
+/*!
+ * \brief Main function for starting the app
+ * \param argc argument count
+ * \param argv array of arguments
+ * \return exit code
+ */
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

@@ -55,7 +55,15 @@ void MainWindow::on_actionSave_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, "Save schema");
     if (!filename.isEmpty())
-        scene->saveToFile(filename);
+    {
+        try {
+            scene->saveToFile(filename);
+        } catch (...) {
+            QMessageBox msgBox;
+            msgBox.setText("Could not save the schema.");
+            msgBox.exec();
+        }
+    }
     setWindowTitle("Block editor - " + filename);
 }
 

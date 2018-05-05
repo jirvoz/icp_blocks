@@ -61,12 +61,6 @@ public:
     void removeSelected();
 
     /*!
-     * \brief Switches between drawing pipes and moving blocks
-     * \param value true if pipes will be drawn
-     */
-    void setDrawPipe(bool value) { drawPipe = value; }
-
-    /*!
      * \brief Add new block to scene
      * Add new block to scene wit type specified through template
      */
@@ -131,7 +125,6 @@ protected:
 private:
     QGraphicsView *viewParent;  //!< QGraphicsView the scene is drawn on
 
-    bool drawPipe;              //!< true if pipes can be drawn
     QGraphicsLineItem *line;    //!< temporary line when drawin pipe
     BlockSlot *startingSlot;     //!< slot where drawn line begins
 

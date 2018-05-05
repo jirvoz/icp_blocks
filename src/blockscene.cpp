@@ -13,7 +13,6 @@ BlockScene::BlockScene(QGraphicsView *parent)
     : QGraphicsScene(parent)
 {
     viewParent = parent;
-    drawPipe = false;
     line = nullptr;
     blocks.append(new BlockItem_vec3(this, 10, 20));
     blocks.append(new BlockItem_abs3(this, 210, 150));
@@ -35,16 +34,14 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         return;
 
     // Start drawing of pipe
-    if (drawPipe) {
-        QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
-        if (overItem) {
-            BlockSlotOut *bs = dynamic_cast<BlockSlotOut *>(overItem);
-            if (bs) {
-                startingSlot = bs;
-                line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
-                        mouseEvent->scenePos()));
-                addItem(line);
-            }
+    QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
+    if (overItem) {
+        BlockSlotOut *bs = dynamic_cast<BlockSlotOut *>(overItem);
+        if (bs) {
+        startingSlot = bs;
+        line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
+            mouseEvent->scenePos()));
+        addItem(line);
         }
     }
 
@@ -58,16 +55,16 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if (overItem) {
         BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem);
         if (bs)
-            updateLabel("Details:\n" + bs->getValueString());
+            updateLabel(bs->getValueString());
         else{
             BlockPipe *p = dynamic_cast<BlockPipe *>(overItem);
             if (p)
-                updateLabel("Details:\n" + p->getValueString());
+                updateLabel(p->getValueString());
         }
     }
 
     // Redraw temporary pipe
-    if (drawPipe && line != nullptr) {
+    if (line != nullptr) {
         QLineF newLine(line->line().p1(), mouseEvent->scenePos());
         line->setLine(newLine);
     }
@@ -81,7 +78,7 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         return;
 
     // Finalize drawing of pipe
-    if (drawPipe && line != nullptr) {
+    if (line != nullptr) {
         removeItem(line);
         delete line;
         line = nullptr;

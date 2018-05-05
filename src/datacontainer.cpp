@@ -18,9 +18,9 @@ DataContainer::DataContainer(DataType type) : type(type)
         dict.insert("y", 0.);
         break;
     case VEC3:
-        dict.insert("x", 4.);
+        dict.insert("x", 0.);
         dict.insert("y", 0.);
-        dict.insert("z", 3.);
+        dict.insert("z", 0.);
         break;
     default:
         break;

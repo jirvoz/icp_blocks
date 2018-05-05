@@ -40,7 +40,13 @@ public:
      */
     virtual QString getDesc()  { return QString();}
 
+    /**
+     * \brief Sets whether block is highlighted
+     * \param value if true, block will be highlighted
+     */
     void setHighlight(bool value);
+
+    /// \brief Computes block
     virtual void compute() { return; }
 
     bool isReady();

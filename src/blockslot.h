@@ -17,14 +17,29 @@
 class BlockItem;
 class BlockPipe;
 
+/**
+ * \brief Input/Output slot of block
+ */
 class BlockSlot : public QGraphicsRectItem
 {
 public:
     BlockSlot(BlockItem *parent, qreal x, qreal y);
 
+    /**
+     * \brief Get associated pipe
+     * \return associated pipe
+     */
     BlockPipe *getPipe() const { return this->pipe; }
+    /**
+     * \brief Set associated pipe
+     * \param pipe pipe to be associated with
+     */
     void setPipe(BlockPipe *pipe) { this->pipe = pipe; }
-    BlockPipe *getPipe() { return this->pipe; }
+
+    /**
+     * \brief Get block in which this slot resides
+     * \return parent block
+     */
     BlockItem *getBlock() { return this->parent_block; }
 
     /**
@@ -37,6 +52,10 @@ public:
      * \return data type
      */
     virtual DataType getType() = 0;
+    /**
+     * \brief Get data value as string
+     * \return string representation of data
+     */
     QString getValueString();
 
 private:
@@ -44,6 +63,9 @@ private:
     BlockPipe *pipe;
 };
 
+/**
+ * \brief Input slot of block
+ */
 class BlockSlotIn : public BlockSlot
 {
 public:
@@ -72,6 +94,9 @@ private:
     DataContainer valueData; //! < user input data
 };
 
+/**
+ * \brief Output slot of block
+ */
 class BlockSlotOut : public BlockSlot
 {
 public:

@@ -54,6 +54,7 @@ private slots:
     void on_actionRemove_triggered();
     void on_actionAbout_triggered();
     void on_actionCompute_all_triggered();
+    void on_actionStep_triggered();
 
 private:
     Ui::MainWindow *ui;

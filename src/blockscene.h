@@ -90,6 +90,12 @@ public:
      */
     bool computeStep(bool fake = false);
 
+    /*!
+     * \brief Check if computation is in progress
+     * \return true if computation is running
+     */
+    bool isComputing() {return computeInProgress;}
+
     QList<BlockItem *> blocks;  //!< list of blocks in schema
 
 signals:

@@ -12,6 +12,8 @@
 InputDialog::InputDialog(QMap<QString, double> *data, QString slotName, QWidget *parent)
     : QDialog(parent)
 {
+    requestedData = data;
+
     QFormLayout *formLayout = new QFormLayout;
     if (data) {
         QMapIterator<QString, double> it(*data);
@@ -30,7 +32,7 @@ InputDialog::InputDialog(QMap<QString, double> *data, QString slotName, QWidget 
 
     // Create buttons
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(sendData()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     // Set main layout
@@ -40,4 +42,16 @@ InputDialog::InputDialog(QMap<QString, double> *data, QString slotName, QWidget 
     setLayout(mainLayout);
 
     setWindowTitle("Inset input data for " + slotName);
+}
+
+void InputDialog::sendData()
+{
+    QMapIterator<QString, QDoubleSpinBox *> it(spinBoxes);
+
+    while (it.hasNext()) {
+        it.next();
+        requestedData->insert(it.key(), it.value()->value());
+    }
+
+    accept();
 }

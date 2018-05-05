@@ -25,6 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(scene, SIGNAL(updateLabel(QString)), this, SLOT(updateLabel(QString)));
 
     statusBar()->showMessage("Hello there, general Kenobi.");
+    QMap<QString, double> *tmp = new QMap<QString, double>();
+    tmp->insert("asdf", 0);
+    tmp->insert("asf ůasd", -1.1);
+    tmp->insert("ljliu", 5);
+    InputDialog diag(tmp, "lklkjsalkj_kasd", this);
+    if (diag.exec() == QDialog::Accepted)
+        statusBar()->showMessage("Success!");
 }
 
 MainWindow::~MainWindow()

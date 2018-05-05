@@ -6,6 +6,7 @@
  */
 
 #include <QGraphicsSceneMouseEvent>
+#include <QMessageBox>
 
 #include "blockscene.h"
 
@@ -87,7 +88,15 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
             if (bs && bs->getType() == startingSlot->getType()) {
                 // Add new pipe
                 BlockPipe *p = new BlockPipe(this, startingSlot, bs);
-                addItem(p);
+                if (!compute(true)) {
+                    // loop detected!
+                    delete p;
+                    QMessageBox msgBox;
+                    msgBox.setText("Loop detected - connection not created");
+                    msgBox.exec();
+                } else {
+                    addItem(p);
+                }
             }
         }
     }
@@ -128,7 +137,7 @@ bool BlockScene::compute(bool fake)
 
     while (computeStep(fake));
 
-    return !computeWait.isEmpty();
+    return computeWait.isEmpty();
 }
 
 bool BlockScene::computeInit(bool fake)

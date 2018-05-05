@@ -53,14 +53,12 @@ void BlockScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     // Show values of slot or pipe when hovering over
     QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
     if (overItem) {
-        BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem);
-        if (bs)
+        if (BlockSlot *bs = dynamic_cast<BlockSlot *>(overItem))
             updateLabel(bs->getValueString());
-        else{
-            BlockPipe *p = dynamic_cast<BlockPipe *>(overItem);
-            if (p)
-                updateLabel(p->getValueString());
-        }
+        else if (BlockPipe *bp = dynamic_cast<BlockPipe *>(overItem))
+            updateLabel(bp->getValueString());
+        else if (BlockItem *bi = dynamic_cast<BlockItem *>(overItem))
+            updateLabel(bi->getDesc());
     }
 
     // Redraw temporary pipe

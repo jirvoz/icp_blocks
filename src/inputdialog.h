@@ -2,6 +2,7 @@
 #define INPUTDIALOG_H
 
 #include <QDialog>
+#include <QtWidgets>
 
 #include "datacontainer.h"
 
@@ -12,6 +13,7 @@ public:
 
 private:
     QMap<QString, double> *requestedData;
+    QMap<QString, QDoubleSpinBox *> spinBoxes;
 };
 
 #endif // INPUTDIALOG_H

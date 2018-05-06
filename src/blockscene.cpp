@@ -101,14 +101,90 @@ void BlockScene::clearScene()
 {
     foreach (auto block, blocks) {
         removeItem(block);
+        delete block;
     }
     blocks.clear();
 }
 
+struct TmpPipe
+{
+    int srcblock;
+    int srcslot;
+    int tgtblock;
+    int tgtslot;
+};
 void BlockScene::loadFromFile(QString filename)
 {
     clearScene();
+    QFile file(filename);
+    file.open(QFile::ReadOnly | QFile::Text);
 
+    QList<TmpPipe *> tmpPipes;
+    QMap<int, BlockItem *> blocksById;
+
+    QXmlStreamReader reader(&file);
+
+    while (reader.readNext() != QXmlStreamReader::StartElement);
+    if (reader.name() != "schema")
+        return;
+
+    while (reader.readNext() != QXmlStreamReader::StartElement && !reader.isEndDocument());
+    while (reader.name() == "block")  {
+        QString tmp = reader.name().toString();
+        QXmlStreamReader::TokenType tt = reader.tokenType();
+        int blockId = reader.attributes().value("id").toInt();
+        QString type = reader.attributes().value("type").toString();
+        double x = reader.attributes().value("posx").toDouble();
+        double y = reader.attributes().value("posy").toDouble();
+        if (type == "ABS3")
+            blocksById.insert(blockId, new BlockItem_abs3(this, x, y));
+        else if (type == "VEC3")
+            blocksById.insert(blockId, new BlockItem_vec3(this, x, y));
+        else if (type == "NUM3")
+            blocksById.insert(blockId, new BlockItem_num3(this, x, y));
+        else if (type == "ABS2")
+            blocksById.insert(blockId, new BlockItem_abs2(this, x, y));
+        else if (type == "VEC2")
+            blocksById.insert(blockId, new BlockItem_vec2(this, x, y));
+        else if (type == "NUM2")
+            blocksById.insert(blockId, new BlockItem_num2(this, x, y));
+        else
+            return;
+
+        // Read pipes
+        while (reader.readNext() != QXmlStreamReader::StartElement && !reader.isEndDocument());
+        tmp = reader.name().toString();
+        tt = reader.tokenType();
+        while (reader.name() == "pipe")
+        {
+            TmpPipe *tmpPipe = new TmpPipe;
+            tmpPipe->srcblock = blockId;
+            tmpPipe->srcslot = reader.attributes().value("srcslot").toInt();
+            tmpPipe->tgtblock = reader.attributes().value("tgtblock").toInt();
+            tmpPipe->tgtslot = reader.attributes().value("tgtslot").toInt();
+            tmpPipes.append(tmpPipe);
+
+            while (reader.readNext() != QXmlStreamReader::StartElement && !reader.isEndDocument());
+            tmp = reader.name().toString();
+            tt = reader.tokenType();
+        }
+    }
+
+    // Create pipes
+    foreach (auto pTmp, tmpPipes) {
+        BlockPipe *p = new BlockPipe(this, blocksById[pTmp->srcblock]->out_slots[pTmp->srcslot],
+                blocksById[pTmp->tgtblock]->in_slots[pTmp->tgtslot]);
+        addItem(p);
+    }
+
+    // Inser blocks to scene
+    QMapIterator<int, BlockItem *> it(blocksById);
+    while (it.hasNext()) {
+        it.next();
+        blocks.append(it.value());
+    }
+
+    file.close();
 }
 
 void BlockScene::saveToFile(QString filename)
@@ -121,7 +197,6 @@ void BlockScene::saveToFile(QString filename)
     writer.writeStartDocument();
     writer.writeStartElement("schema");
 
-    writer.writeStartElement("blocks");
     foreach (auto block, blocks) {
         writer.writeStartElement("block");
         writer.writeAttribute("id", QString::number(blocks.indexOf(block)));
@@ -133,7 +208,7 @@ void BlockScene::saveToFile(QString filename)
             if (!slot->getPipe())
                 continue;
             writer.writeStartElement("pipe");
-            writer.writeAttribute("srcblock", QString::number(blocks.indexOf(block)));
+            //writer.writeAttribute("srcblock", QString::number(blocks.indexOf(block)));
             writer.writeAttribute("srcslot", QString::number(block->out_slots.indexOf(slot)));
             BlockItem *tgtBlock = slot->getPipe()->inSlot->getBlock();
             writer.writeAttribute("tgtblock", QString::number(blocks.indexOf(tgtBlock)));
@@ -144,7 +219,6 @@ void BlockScene::saveToFile(QString filename)
 
         writer.writeEndElement(); // block
     }
-    writer.writeEndElement(); // blocks
 
     writer.writeEndElement(); // schema
     writer.writeEndDocument();

@@ -21,7 +21,6 @@ class DataContainer
 {
 public:
     DataContainer(DataType type);
-    bool typeMatch(DataType t);
     QMap<QString, double> *getData();
     DataType getType();
 private:

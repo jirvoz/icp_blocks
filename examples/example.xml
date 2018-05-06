@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+    <block id="0" type="VEC3" posx="-36" posy="85">
+        <pipe srcslot="0" tgtblock="1" tgtslot="0"/>
+    </block>
+    <block id="1" type="ABS3" posx="158" posy="23"/>
+    <block id="2" type="NUM3" posx="-299" posy="26">
+        <pipe srcslot="0" tgtblock="0" tgtslot="0"/>
+        <pipe srcslot="1" tgtblock="0" tgtslot="1"/>
+        <pipe srcslot="2" tgtblock="0" tgtslot="2"/>
+    </block>
+</schema>

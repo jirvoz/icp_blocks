@@ -7,6 +7,8 @@
 
 #include <QGraphicsSceneMouseEvent>
 #include <QMessageBox>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
 #include "blockscene.h"
 
@@ -38,7 +40,7 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
     if (overItem) {
         BlockSlotOut *bs = dynamic_cast<BlockSlotOut *>(overItem);
-        if (bs) {
+        if (bs && !bs->getPipe()) {
         startingSlot = bs;
         line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
             mouseEvent->scenePos()));
@@ -85,7 +87,7 @@ void BlockScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         QGraphicsItem *overItem = itemAt(mouseEvent->scenePos(), viewParent->transform());
         if (overItem) {
             BlockSlotIn *bs = dynamic_cast<BlockSlotIn *>(overItem);
-            if (bs && bs->getType() == startingSlot->getType()) {
+            if (bs && !bs->getPipe() && bs->getType() == startingSlot->getType()) {
                 // Add new pipe
                 BlockPipe *p = new BlockPipe(this, startingSlot, bs);
                 if (!compute(true)) {
@@ -120,7 +122,43 @@ void BlockScene::loadFromFile(QString filename)
 
 void BlockScene::saveToFile(QString filename)
 {
+    QFile file(filename);
+    file.open(QFile::WriteOnly | QFile::Text);
 
+    QXmlStreamWriter writer(&file);
+    writer.setAutoFormatting(true);
+    writer.writeStartDocument();
+    writer.writeStartElement("schema");
+
+    writer.writeStartElement("blocks");
+    foreach (auto block, blocks) {
+        writer.writeStartElement("block");
+        writer.writeAttribute("id", QString::number(blocks.indexOf(block)));
+        writer.writeAttribute("type", block->getName());
+        writer.writeAttribute("posx", QString::number(block->scenePos().rx()));
+        writer.writeAttribute("posy", QString::number(block->scenePos().ry()));
+
+        foreach (auto slot, block->out_slots) {
+            if (!slot->getPipe())
+                continue;
+            writer.writeStartElement("pipe");
+            writer.writeAttribute("srcblock", QString::number(blocks.indexOf(block)));
+            writer.writeAttribute("srcslot", QString::number(block->out_slots.indexOf(slot)));
+            BlockItem *tgtBlock = slot->getPipe()->inSlot->getBlock();
+            writer.writeAttribute("tgtblock", QString::number(blocks.indexOf(tgtBlock)));
+            writer.writeAttribute("tgtslot", QString::number(tgtBlock->in_slots.indexOf(
+                                      static_cast<BlockSlotIn *>(slot->getPipe()->inSlot))));
+            writer.writeEndElement(); // pipe
+        }
+
+        writer.writeEndElement(); // block
+    }
+    writer.writeEndElement(); // blocks
+
+    writer.writeEndElement(); // schema
+    writer.writeEndDocument();
+
+    file.close();
 }
 
 void BlockScene::removeSelected()

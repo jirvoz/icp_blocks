@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QFile>
 
 #include "blockscene.h"
 

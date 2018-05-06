@@ -45,15 +45,22 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open schema");
+    QString filename = QFileDialog::getOpenFileName(this, "Open schema", QString(), "XML files (*.xml)");
     if (!filename.isEmpty())
-        scene->loadFromFile(filename);
+        try {
+            scene->loadFromFile(filename);
+        } catch (...) {
+            scene->clearScene();
+            QMessageBox msgBox;
+            msgBox.setText("Could not load the schema.");
+            msgBox.exec();
+        }
     setWindowTitle("Block editor - " + filename);
 }
 
 void MainWindow::on_actionSave_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, "Save schema");
+    QString filename = QFileDialog::getSaveFileName(this, "Save schema", QString(), "XML files (*.xml)");
     if (!filename.isEmpty())
     {
         try {

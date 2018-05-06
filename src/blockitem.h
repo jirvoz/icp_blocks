@@ -25,7 +25,14 @@ class BlockSlotOut;
 class BlockItem : public QGraphicsRectItem
 {
 public:
+    /**
+     * \brief Computation block constructor
+     * \param parent pointer to parent block scene
+     * \param x x-position of new block
+     * \param y y-position of new block
+     */
     BlockItem(BlockScene *parent, qreal x, qreal y);
+    /// \brief Computation block destructor
     ~BlockItem();
 
     /**
@@ -49,12 +56,24 @@ public:
     /// \brief Computes block
     virtual void compute() { return; }
 
+    /**
+     * \brief Check if block is ready to be computed
+     * \return true if block is ready
+     */
     bool isReady();
+
+    /**
+     * \brief Get user input for not connected slots
+     * \return false if user declined input
+     */
     bool askForInput();
 
+    /// \brief Flag if block was already computed
     bool computed;
 
+    /// \brief List of input slots
     QList<BlockSlotIn *> in_slots;
+    /// \brief List of output slots
     QList<BlockSlotOut *> out_slots;
 
 protected:

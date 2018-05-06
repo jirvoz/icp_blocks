@@ -18,7 +18,7 @@ clean: src/Makefile
 	cd src && make clean
 	rm -rf blockeditor src/blockeditor src/Makefile doc/ xvozar04-xdolez76.tar.gz
 
-pack:
+pack: clean
 	tar pczf xvozar04-xdolez76.tar.gz src/ examples/ README.md Makefile
 
 .PHONY: all clean pack
